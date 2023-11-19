@@ -14,6 +14,5 @@ The application must be hosted locally along with the Smart Organizer API in ord
 
 - [ ] Create edit item page
 - [ ] Create edit organizer page
-- [ ] Store files on github
 - [ ] Create a docker image
 - [ ] Convert system to Home assistant addon
