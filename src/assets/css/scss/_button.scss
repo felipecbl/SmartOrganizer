@@ -1,0 +1,47 @@
+.buttons{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: $gap;
+  box-sizing: border-box;
+
+  &.align-right{
+    justify-content: flex-end;
+  }
+}
+
+.button, button{
+  color: $clear-color;
+  background-color: $theme-color;
+  border: 1px solid $theme-color;
+  border-radius: $button-border-radius;
+  padding: $gap-half $gap;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover{
+    background-color: darken($theme-color, 10%);
+  }
+
+
+  &.secondary{
+    background-color: $clear-color;
+    color: $theme-color;
+    border: 1px solid $theme-color;
+
+    &:hover{
+      background-color: $theme-color;
+      color: $clear-color
+    }
+  }
+
+  &.danger{
+    background-color: $error-color;
+    border: 1px solid $error-color;
+
+    &:hover{
+      background-color: darken($error-color, 10%);
+    }
+  }
+}

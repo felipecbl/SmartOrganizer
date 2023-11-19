@@ -1,0 +1,4 @@
+**/?(*.)+(spec|test).[jt]s?(x)
+**/test
+**/?vite.config.ts
+**/api/**/*.*

@@ -1,0 +1,122 @@
+
+.fieldset{
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+
+  >*{
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  &.error{
+    color: $error-color;
+
+    .helper-text{
+      color: $error-color;
+    }
+  }
+
+  label{
+    margin: 0 0 $spacer-half;
+    font-size: $font-size-md;
+    font-weight: 300;
+  }
+
+  input{
+    margin: 0 0 $spacer-half;
+  }
+
+  .helper-text{
+    margin: 0 0 $spacer-half;
+    font-size: $font-size-sm;
+    color: $font-color-light;
+  }
+}
+
+input, select{
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  font-size: $input-font-size;
+  padding: $spacer-half;
+  border: $input-border;
+  border-radius: $input-border-radius;
+  font-size: $font-size-md;
+  width: 100%;
+  margin: 0 auto $spacer;
+  transition: border-color 0.2s ease-in-out;
+
+  &.size-xl{
+      padding: $spacer;
+  }
+
+  &.size-md{
+      padding: $spacer-half;
+  }
+
+  &:focus, &:active{
+    outline: none;
+    border: $input-border-focus;
+  }
+
+  &.error{
+    border: $input-border-error;
+  }
+}
+
+select{
+  &::before{
+    //arrow
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: $spacer;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid $font-color-light;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+}
+
+.item-quantity{
+  display: flex;
+  width: 100%;
+  margin: 0 auto $spacer;
+  justify-content: center;
+  gap: $gap-half;
+  align-items: center;
+
+  .item-quantity__button{
+    box-sizing: border-box;
+    // border-radius: 30vmin;
+    padding: 0;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
+.text-select{
+  position: relative;
+
+  .input-wrapper{
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+  }
+}
+.text-select__dropdown{
+  position: absolute;
+  top: 0;
+  // z-index: 9999;
+}

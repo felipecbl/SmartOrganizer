@@ -1,0 +1,29 @@
+.panel{
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  padding: $spacer;
+  flex: 1 1 auto;
+  margin: 0 auto $spacer;
+  background-color: $clear-color;
+  box-shadow: 0 0 10px $shadow-color;
+  border-radius: $panel-border-radius;
+
+  h2{
+    margin: 0 0 $spacer-half;
+    font: 1em sans-serif;
+    font-weight: 400;
+  }
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  flex: 1 1 auto;
+  margin: 0 auto;
+  width: 100%;
+}
