@@ -2,3 +2,4 @@
 **/test
 **/?vite.config.ts
 **/api/**/*.*
+**/hassio-addon-smart-organizer/**/*.*
