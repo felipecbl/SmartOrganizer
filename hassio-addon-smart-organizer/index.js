@@ -6,7 +6,7 @@ console.log('Hello World from Smart Organizer project');
 
 app.use(express.static(path.join(__dirname, "dist")));
 
-// start express server on port 8001
-app.listen(8001, () => {
-  console.log("server started on port 8001");
+// start express server on port 8000
+app.listen(8000, () => {
+  console.log("server started on port 8000");
 });
