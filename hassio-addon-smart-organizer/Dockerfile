@@ -5,7 +5,7 @@ RUN apk add --no-cache nodejs npm
 
 COPY package.json /
 COPY index.js /
-COPY client/* /client
+COPY client/* /client/
 RUN cd / && npm install --unsafe-perm
 
 COPY run.sh /
