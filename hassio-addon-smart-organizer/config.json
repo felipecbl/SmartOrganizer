@@ -1,6 +1,6 @@
 {
   "name": "Smart Organizer for Home Assistant",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "slug": "smart_organiszer_home_assistant",
   "description": "Smart Organizer addon for Home Assistant config***",
@@ -14,12 +14,8 @@
   "panel_icon": "mdi:led-on",
   "panel_title": "Smart Organizer",
 
-  "options": {
-    "port": 8000
-  },
-  "schema": {
-    "port": "integer"
-  },
+  "options": {},
+  "schema": {},
   "ports": {
     "80/tcp": 80,
     "443/tcp": 5000
