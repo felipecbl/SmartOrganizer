@@ -9,6 +9,10 @@
   "map": [
     "share:rw"
   ],
-  "options": {},
-  "schema": {}
+  "options": {
+    "organizer_name": "Organizer 1"
+  },
+  "schema": {
+    "organizer_name": "str"
+  }
 }
