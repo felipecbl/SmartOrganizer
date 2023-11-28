@@ -1,10 +1,10 @@
 {
   "name": "Smart Organizer for Home Assistant",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "slug": "smart_organiszer_home_assistant",
   "description": "Smart Organizer addon for Home Assistant from config",
-  "startup": "application",
+  "startup": "services",
   "boot": "auto",
   "init": false,
 
