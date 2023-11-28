@@ -2,7 +2,7 @@ const path = require("path");
 const express = require('express');
 
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 5000;
 
 console.log('Hello World from Smart Organizer project');
 
