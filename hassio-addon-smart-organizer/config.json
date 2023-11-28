@@ -16,13 +16,13 @@
   },
   "schema": {
     "organizer_name": "str"
-  },
-  "ports": {
-    "80/tcp": 80,
-    "443/tcp": 443
-  },
-  "ports_description": {
-    "80/tcp": "Webservice API",
-    "443/tcp": "Webservice API"
   }
+  // "ports": {
+  //   "80/tcp": 80,
+  //   "443/tcp": 443
+  // },
+  // "ports_description": {
+  //   "80/tcp": "Webservice API",
+  //   "443/tcp": "Webservice API"
+  // }
 }
