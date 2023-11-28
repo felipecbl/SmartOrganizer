@@ -2,7 +2,7 @@ const path = require("path");
 const express = require('express');
 
 const app = express();
-const port = process.env.PORT || 81;
+const port = process.env.PORT || 5000;
 
 console.log('Hello World from Smart Organizer project');
 
@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, "client")));
 //   res.send('Hello World from Smart Organizer project');
 // });
 
-// start express server on port 8000
+// start express server
 app.listen(port, () => {
   console.log(`server started on dynamic port ${port}`);
 });
