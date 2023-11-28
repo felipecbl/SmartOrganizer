@@ -10,5 +10,5 @@ app.use(express.static(path.join(__dirname, "/index.html")));
 
 // start express server on port 8000
 app.listen(port, () => {
-  console.log(`server started on port ${port}`);
+  console.log(`server started on dynamic port ${port}`);
 });
