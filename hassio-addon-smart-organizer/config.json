@@ -12,10 +12,10 @@
     "share:rw"
   ],
   "options": {
-    "organizer_name": "Organizer 1"
+    // "organizer_name": "Organizer 1"
   },
   "schema": {
-    "organizer_name": "str"
+    // "organizer_name": "str"
   }
   // "ports": {
   //   "80/tcp": 80,
