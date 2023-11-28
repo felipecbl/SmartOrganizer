@@ -1,6 +1,6 @@
 {
   "name": "Smart Organizer for Home Assistant",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "slug": "smart_organiszer_home_assistant",
   "description": "Smart Organizer addon for Home Assistant from config file",
@@ -14,14 +14,10 @@
   ],
   "panel_icon": "mdi:led-on",
   "options": {
-    "organize_name": "Organizer 1"
+    "organizer_name": "Organizer 1"
   },
   "schema": {
-    "organize_name": {
-      "type": "string",
-      "description": "Name of the organizer",
-      "default": "Organizer 1"
-    }
+    "organizer_name": "str"
   },
   "ports": {
     "80/tcp": 80
