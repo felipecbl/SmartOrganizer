@@ -6,7 +6,6 @@
   "description": "Smart Organizer addon for Home Assistant config***",
   "startup": "application",
   "boot": "auto",
-  "webui": "http://[HOST]:[PORT]",
   "init": false,
   "ingress": true,
   "map": [],
