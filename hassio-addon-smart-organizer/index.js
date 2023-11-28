@@ -10,7 +10,7 @@ console.log('Hello World from Smart Organizer project');
 app.get('/', (req, res) => {
   // res.sendFile(path.join(__dirname, "client/index.html"));
   res.send('Hello World from Smart Organizer project');
-}
+});
 
 // start express server on port 8000
 app.listen(port, () => {
