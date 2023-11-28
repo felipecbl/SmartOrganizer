@@ -1,6 +1,6 @@
 {
   "name": "Smart Organizer for Home Assistant",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "slug": "smart_organiszer_home_assistant",
   "description": "Smart Organizer addon for Home Assistant from config",
@@ -13,7 +13,7 @@
   "auth_api": true,
   "ingress": true,
   "panel_icon": "mdi:led-on",
-  "panel_title": "Backups",
+  "panel_title": "Smart Organizer",
 
   "map": [
     "share:rw"
