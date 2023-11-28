@@ -3,7 +3,7 @@
   "version": "0.1.4",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "slug": "smart_organiszer_home_assistant",
-  "description": "Smart Organizer addon for Home Assistant",
+  "description": "Smart Organizer addon for Home Assistant from config",
   "startup": "application",
   "boot": "auto",
   "webui": "http://[HOST]:[PORT]",
@@ -18,9 +18,11 @@
     "organizer_name": "str"
   },
   "ports": {
-    "80/tcp": 80
+    "80/tcp": 80,
+    "443/tcp": 443
   },
   "ports_description": {
-    "80/tcp": "HTTP port"
+    "80/tcp": "Webservice API",
+    "443/tcp": "Webservice API"
   }
 }
