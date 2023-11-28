@@ -1,11 +1,6 @@
-#!/bin/bash
-set -e
+#!/usr/bin/with-contenv bashio
+set +u
 
-CONFIG_PATH=/data/options.json
-CONNECTION_STRING="$(jq --raw-output '.connectionString' $CONFIG_PATH)"
 
-echo Hello!
-node -v
-npm -v
-npm install
-node index.js
+bashio::log.info "Starting Smart Organizer."
+npm run start
