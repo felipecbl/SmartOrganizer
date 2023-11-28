@@ -3,12 +3,30 @@
   "version": "0.1.1",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "slug": "smart_organiszer_home_assistant",
-  "description": "Smart Organizer addon for Home Assistant",
+  "description": "Smart Organizer addon for Home Assistant from config file",
   "startup": "application",
   "boot": "auto",
+  "webui": "http://[HOST]:[PORT]",
+  "ingress": true,
+  "init": false,
   "map": [
     "share:rw"
   ],
-  "options": {},
-  "schema": {}
+  "panel_icon": "mdi:led-on",
+  "options": {
+    "organize_name": "Organizer 1"
+  },
+  "schema": {
+    "organize_name": {
+      "type": "string",
+      "description": "Name of the organizer",
+      "default": "Organizer 1"
+    }
+  },
+  "ports": {
+    "80/tcp": 80
+  },
+  "ports_description": {
+    "80/tcp": "HTTP port"
+  }
 }
