@@ -10,6 +10,7 @@ RUN cd / && npm install --unsafe-perm
 
 COPY run.sh /
 RUN chmod a+x /run.sh
+RUN chmod a+x /index.html
 RUN chmod a+x /client/index.html
 
 CMD [ "/run.sh" ]
