@@ -1,6 +1,6 @@
 {
   "name": "Smart Organizer for Home Assistant",
-  "version": "0.1.43",
+  "version": "0.1.44",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "slug": "smart_organiszer_home_assistant",
   "description": "Smart Organizer addon for Home Assistant config***",
@@ -8,7 +8,7 @@
   "boot": "auto",
   "init": false,
   "ingress": true,
-  "webui": "http://[HOST]:[PORT:83]/client",
+  "webui": "http://[HOST]:[PORT:83]",
   "map": [],
   "stage": "stable",
   "hassio_role": "admin",
