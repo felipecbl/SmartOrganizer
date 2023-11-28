@@ -4,7 +4,7 @@ const app = express();
 
 console.log('Hello World from Smart Organizer project');
 
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(__dirname, "client")));
 
 // start express server on port 8000
 app.listen(8000, () => {

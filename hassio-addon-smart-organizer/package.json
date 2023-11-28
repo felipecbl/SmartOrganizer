@@ -1,7 +1,7 @@
 {
   "name": "nodejs_starter_hassio",
   "version": "0.0.1",
-  "description": "Starter project for Node.js based Hass.io addons",
+  "description": "Starter project for Node.js based Hass.io addons package.js***",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

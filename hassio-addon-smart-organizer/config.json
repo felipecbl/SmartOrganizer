@@ -1,31 +1,21 @@
 {
   "name": "Smart Organizer for Home Assistant",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "slug": "smart_organiszer_home_assistant",
-  "description": "Smart Organizer addon for Home Assistant from config",
+  "description": "Smart Organizer addon for Home Assistant config***",
   "startup": "services",
   "boot": "auto",
   "init": false,
-
   "ingress": true,
+
   "hassio_role": "admin",
   "panel_icon": "mdi:led-on",
   "panel_title": "Smart Organizer",
 
-  "map": [
-    "share:rw"
-  ],
-  "options": {
-    "organizer_name": "Organizer 1"
-  },
-  "schema": {
-    "organizer_name": "str"
-  },
+  "options": {},
+  "schema": {},
   "ports": {
     "8000/tcp": 8000
-  },
-  "ports_description": {
-    "8000/tcp": "Webservice API"
   }
 }
