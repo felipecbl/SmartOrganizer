@@ -6,23 +6,9 @@
   "description": "Smart Organizer addon for Home Assistant from config",
   "startup": "application",
   "boot": "auto",
-  // "webui": "http://[HOST]:[PORT]",
-  // "panel_icon": "mdi:led-on",
   "map": [
     "share:rw"
   ],
-  "options": {
-    // "organizer_name": "Organizer 1"
-  },
-  "schema": {
-    // "organizer_name": "str"
-  }
-  // "ports": {
-  //   "80/tcp": 80,
-  //   "443/tcp": 443
-  // },
-  // "ports_description": {
-  //   "80/tcp": "Webservice API",
-  //   "443/tcp": "Webservice API"
-  // }
+  "options": {},
+  "schema": {}
 }
