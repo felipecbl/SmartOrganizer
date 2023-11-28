@@ -11,9 +11,11 @@ RUN apk add --no-cache \
 
 COPY package.json /
 COPY index.js /
+ADD dist /dist
 RUN cd / && npm install --unsafe-perm
 
 COPY run.sh /
 RUN chmod a+x /run.sh
+RUN chmod a+x dist/index.html
 
 CMD [ "/run.sh" ]
