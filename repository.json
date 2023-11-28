@@ -1,4 +1,5 @@
 {
   "name": "Smart Organizer Home Assistant Add-on",
-  "url": "https://github.com/felipecbl/SmartOrganizer"
+  "url": "https://github.com/felipecbl/SmartOrganizer",
+  "maintainer": "Felipe Castelo Branco"
 }
