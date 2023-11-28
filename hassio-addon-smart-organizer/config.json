@@ -6,6 +6,7 @@
   "description": "Smart Organizer addon for Home Assistant from config",
   "startup": "application",
   "boot": "auto",
+  "init": false,
 
   "ingress": true,
   "hassio_role": "admin",
