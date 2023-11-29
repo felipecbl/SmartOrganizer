@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bashio
 set +u
 
-export PORT=$(bashio::config 'port')
+# export PORT=$(bashio::config 'port')
 
-bashio::log.info "Starting Smart Organizer. => run.sh***"
+bashio::log.info "Starting Smart Organizer..."
 npm run start

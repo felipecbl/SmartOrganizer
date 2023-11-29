@@ -1,30 +1,28 @@
 {
   "name": "Smart Organizer for Home Assistant",
-  "version": "0.1.50",
+  "version": "0.1.63",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "slug": "smart_organiszer_home_assistant",
-  "description": "Smart Organizer addon for Home Assistant config***",
+  "description": "Smart Organizer addon for Home Assistant",
   "startup": "application",
   "boot": "auto",
   "init": false,
   "ingress": true,
-  "webui": "http://[HOST]:[PORT:80]",
-  "map": [],
+  "ingress_entry": "/",
+  "ingress_port": 8000,
   "stage": "stable",
+
   "hassio_role": "admin",
   "panel_icon": "mdi:led-on",
   "panel_title": "Smart Organizer",
+  "map": ["ssl:rw", "share:rw", "media:rw"],
 
-  "options": {
-    "port": 80
-  },
-  "schema": {
-    "port": "int"
-  },
+  "options": {},
+  "schema": {},
   "ports": {
-    "80/tcp": 80
+    "8000/tcp": 8000
   },
   "ports_description": {
-    "80/tcp": "Web interface http"
+    "8000/tcp": "Web interface"
   }
 }
