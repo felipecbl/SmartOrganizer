@@ -15,7 +15,6 @@ ADD config /config
 ADD controllers /controllers
 ADD db /db
 ADD middleware /middleware
-ADD models /models
 ADD routes /routes
 ADD utils /utils
 RUN cd / && npm install --unsafe-perm
@@ -27,7 +26,6 @@ RUN chmod a+x -R /config
 RUN chmod a+x -R /controllers
 RUN chmod a+x -R /db
 RUN chmod a+x -R /middleware
-RUN chmod a+x -R /models
 RUN chmod a+x -R /routes
 RUN chmod a+x -R /utils
 
