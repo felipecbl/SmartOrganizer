@@ -10,13 +10,11 @@ WORKDIR /data
 
 COPY package.json /
 COPY index.js /
-COPY index.html /
 ADD client /client
 RUN cd / && npm install --unsafe-perm
 
 COPY run.sh /
 RUN chmod a+x /run.sh
-RUN chmod a+x /index.html
 RUN chmod a+x -R /client
 
 CMD [ "/run.sh" ]
