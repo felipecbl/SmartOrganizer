@@ -1,17 +1,29 @@
 const path = require("path");
-const express = require('express');
+const express = require("express");
+const cors = require("cors");
+const errorHandler = require("./middleware/error");
+const { log } = require("console");
 
-const app = express();
-const port = process.env.PORT || 8000;
+const App = express();
+App.use(cors());
+App.use(express.json());
 
-console.log('Hello World from Smart Organizer project');
+const PORT = process.env.PORT || 8000;
 
-app.use(express.static(path.join(__dirname, "client/")));
-// app.get('/', (req, res) => {
-//   res.send('Hello World from Smart Organizer project');
-// });
+console.log('Starting Smart Organizer...');
+
+// Connecting Routes
+App.use("/api/organizers", require("./routes/organizers"));
+App.use("/api/settings", require("./routes/settings"));
+
+App.use(express.static(path.join(__dirname, "client/")));
+
+// Error Handler Middleware
+App.use(errorHandler);
 
 // start express server
-app.listen(port, () => {
-  console.log(`server started on dynamic port ${port}`);
+const server = App.listen(PORT, () => console.log(`Running on port ${PORT}`));
+process.on("unhandledRejection", (err, promise) => {
+  console.log(`Logged error: ${err}`);
+  server.close(() => process.exit(1));
 });

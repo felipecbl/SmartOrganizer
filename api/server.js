@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const errorHandler = require("./middleware/error");
 const { log } = require("console");
+
 const App = express();
 App.use(cors());
 App.use(express.json());

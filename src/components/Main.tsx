@@ -12,7 +12,7 @@ export const Main: React.FC<MainInterface> = ({ }) => {
           {
             "allItems": <AllItems />,
             "addItem": <AddItem />,
-            "editItem": <div>editItem</div>,
+            "editItem": <div>edit Item</div>,
             "allOrganizers": <Organizers />,
             "addOrganizer": <AddOrganizer />,
             "editOrganizer": <div>editOrganizer</div>,
