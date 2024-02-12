@@ -4,6 +4,7 @@ const { scanDevices, devices } = require("../middleware/wled");
 const { log } = require("console");
 
 exports.getSettings = async (req, res, next) => {
+  console.log('getSettings');
   try {
     const settings = await settingsDb.get('settings');
     res.status(200).json({

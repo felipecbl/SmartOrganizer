@@ -8,7 +8,7 @@ const App = express();
 App.use(cors());
 App.use(express.json());
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8890;
 
 console.log('Starting Smart Organizer...');
 

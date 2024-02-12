@@ -2,9 +2,12 @@ const ErrorResponse = require("../utils/errorResponse");
 const {organizersDb} = require("../config/pouchDb");
 const uniqid = require('uniqid');
 const { log } = require("console");
+const { url } = require("inspector");
 
 exports.getOrganizers = async (req, res, next) => {
   const { id } = req.query;
+
+  console.log('getOrganizers', id);
 
   try {
     const clientList = await organizersDb.allDocs({
@@ -109,6 +112,66 @@ exports.updateItem = async (req, res, next) => {
     next(error);
   }
 }
+
+exports.findLocation = async (req, res, next) => {
+
+  const {organizerId, index} = req.body;
+
+  try{
+
+    const organizer = await organizersDb.get(organizerId);
+
+    console.log(organizer.items[index]);
+    const item = organizer.items[index];
+    const quantity = item.empty ? 0 : item.quantity;
+
+
+  const url = `http://${organizer.server}.local/json`;
+  await resetOrganizer(url);
+  const red = "ff0000";
+  const green = "00ff00";
+  const yellow = "ffff00";
+  let color = red;
+
+  if (quantity >= 10) color = green;
+  if (quantity > 0 && quantity < 10) color = yellow;
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ on: true, bri: 255, seg: { id: 0, i: [index, color] } }),
+  })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+
+    res.status(200).json({
+      success: true,
+      data: {success: true, message: "Location found"},
+    });
+
+  }catch(error){
+    next(error);
+  }
+
+};
+
+
+const resetOrganizer = async (url) => {
+  return await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ on: true, bri: 255, seg: { id: 0, i: [0, 64, "000000"] } }),
+  });
+};
 
 const filterDocuments = (documents) => {
   return documents.map((document) => {

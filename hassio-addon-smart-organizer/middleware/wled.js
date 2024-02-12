@@ -22,7 +22,7 @@ exports.scanDevices = async () => {
     browser.on('up', (data) => {
       const id = data.txt.mac;
       const ip = data.referer.address;
-log(data)
+// log(data)
 
       // Check if device is already know
       if (this.devices[ip] == null) {

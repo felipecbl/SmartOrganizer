@@ -10,7 +10,6 @@ WORKDIR /data
 
 COPY package.json /
 COPY index.js /
-
 ADD client /client
 ADD config /config
 ADD controllers /controllers

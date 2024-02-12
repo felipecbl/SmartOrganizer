@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // const { getClientList, searchClientsByName, insertClient, getRecentClients, deleteClient, updateClient, resetDefault } = require("../controllers/client");
-const {getOrganizers, addOrganizer, deleteOrganizer, addItem, updateItem} = require ("../controllers/organizers");
+const {getOrganizers, addOrganizer, deleteOrganizer, addItem, updateItem, findLocation} = require ("../controllers/organizers");
 // GET all organizers
 router.route("/").get(getOrganizers);
 
@@ -22,5 +22,7 @@ router.route("/updateitem").put(updateItem);
 // DELETE organizer
 router.route("/delete").delete(deleteOrganizer);
 // DELETE item
+
+router.route("/find").post(findLocation);
 
 module.exports = router;
