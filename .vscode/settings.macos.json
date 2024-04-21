@@ -1,0 +1,13 @@
+{
+  "saveAndRun": {
+    "commands": [
+      {
+        "match": ".*\\.scss$",
+        "cmd": "node-sass  ${fileDirname} -o ${fileDirname} --source-map true --output-style compressed -q ",
+        // "cmd": "node-sass  ${fileDirname} -o ${fileDirname}\\..\\ --source-map true --output-style compressed -q ",
+        "useShortcut": false,
+        "silent": false
+      }
+    ]
+  }
+}
