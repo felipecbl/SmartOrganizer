@@ -1,0 +1,15 @@
+node_modules
+client/node_modules
+client/src
+.devcontainer
+.github
+.vscode
+.git
+.DS_Store
+.*/
+*/._*
+*._*
+*/.._*
+*.._*
+node_modules
+data

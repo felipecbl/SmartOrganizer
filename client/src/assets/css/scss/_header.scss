@@ -1,0 +1,55 @@
+
+header{
+  background-color: $clear-color;
+  margin: 0 auto $spacer;
+  width: 100%;
+
+  .logo{
+    width: clamp(200px, 30vw, 500px);
+    height: 100px;
+    display: flex;
+    align-items: center;
+
+    h1{
+      font-size: clamp(1rem, 3vw, 2rem);
+      white-space: nowrap;
+    }
+  }
+
+  .menu-trigger{
+    display: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 101;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: $mobile-breakpoint){
+    nav{
+      .buttons{
+        display: none;
+
+        &.open{
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          justify-content: center;
+          top: 0;
+          right: 0;
+          background-color: $clear-color;
+          box-shadow: 0 0 10px $shadow-color;
+          padding: $spacer;
+          z-index: 100;
+          width: 100%;
+          height: 100vh;
+          // max-width: 300px;
+          border-radius: $panel-border-radius;
+        }
+      }
+    }
+    .menu-trigger{
+      display: block;
+    }
+  }
+}

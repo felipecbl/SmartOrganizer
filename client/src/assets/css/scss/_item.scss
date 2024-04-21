@@ -88,22 +88,8 @@
     }
     .item__edit{
       position: absolute;
-      width: $round-button-size;
-      height: $round-button-size;
-      border-radius: 3vmin;
       right: $gap;
       top: $gap;
-      background-color: $clear-color;
-      color: $theme-color;
-      border: none;
-      box-shadow: 0 0 10px $shadow-color;
-      font-size: 1rem;
-      cursor: pointer;
-      padding: 0;
-
-      &:hover{
-      box-shadow: 0 0 10px $theme-color;
-      }
     }
     .item-quantity{
       position: absolute;

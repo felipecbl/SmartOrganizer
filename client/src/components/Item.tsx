@@ -2,6 +2,7 @@ import { ItemQuantity } from "components";
 import { useDb, usePages } from "providers";
 import { ensureNumber } from "utils";
 import { ApiResponse, ItemInterface } from "models";
+import { Edit2 } from "react-feather";
 
 export const Item: React.FC<ItemInterface> = ({
   _id,
@@ -73,14 +74,15 @@ export const Item: React.FC<ItemInterface> = ({
         </div>
       </div>
       <button
-        className="item__edit"
+        className="item__edit button-icon"
+        title="Edit Item"
         onClick={() => {
           setCurrentPage("editItem", {
             data: { organizerId, position, type: "editItem" },
           });
         }}
       >
-        ✎
+        <Edit2 size={16} />
       </button>
     </div>
   );

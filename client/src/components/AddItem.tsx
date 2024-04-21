@@ -7,6 +7,8 @@ import { SelectField } from "./SelectField";
 import { useDb, usePages } from "providers";
 import { ensureNumber } from "utils";
 
+import { Trash } from "react-feather";
+
 export interface AddItemInterface {}
 
 export const AddItem: React.FC<AddItemInterface> = ({}) => {
@@ -40,12 +42,14 @@ export const AddItem: React.FC<AddItemInterface> = ({}) => {
   };
 
   const handleDelete = () => {
-    deleteItem(
-      selectedOrganizerId,
-      selectedPosition,
+    if (confirm(`Are you sure you want to delete ${item.name}?`) == true) {
+      deleteItem(
+        selectedOrganizerId,
+        selectedPosition,
 
-      () => setCurrentPage("allItems")
-    );
+        () => setCurrentPage("allItems")
+      );
+    }
   };
 
   const [item, setItem] = useState<ItemInterface>({
@@ -95,6 +99,15 @@ export const AddItem: React.FC<AddItemInterface> = ({}) => {
       {organizers && organizers?.length > 0 && !displayAddOrganizer ? (
         <Panel title={editing ? "Edit item" : "Add item"}>
           <div className="form">
+            {editing && (
+              <button
+                onClick={handleDelete}
+                title="Delete item"
+                className="button-icon danger top-right"
+              >
+                <Trash size={16} />
+              </button>
+            )}
             {!editing && (
               <SelectField
                 label="Select organizer"
@@ -196,12 +209,7 @@ export const AddItem: React.FC<AddItemInterface> = ({}) => {
               Cancel
             </button>
             {editing ? (
-              <>
-                <button className="button danger" onClick={handleDelete}>
-                  Delete
-                </button>
-                <button onClick={handleUpdate}>Update</button>
-              </>
+              <button onClick={handleUpdate}>Update</button>
             ) : (
               <button onClick={handleInsert}>Add</button>
             )}

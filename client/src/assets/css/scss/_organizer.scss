@@ -10,6 +10,7 @@
     align-items: left;
   }
 .organizer__name{
+  position: relative;
   font-size: $font-size-lg;
   font-weight: bold;
   margin-bottom: $spacer-quarter;

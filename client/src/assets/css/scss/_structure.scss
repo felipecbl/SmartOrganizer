@@ -27,25 +27,6 @@ body{
   }
 }
 
-header{
-  background-color: $clear-color;
-  margin: 0 auto $spacer;
-  width: 100%;
-
-  .logo{
-    width: clamp(200px, 30vw, 500px);
-    height: 100px;
-    display: flex;
-    align-items: center;
-
-    h1{
-      font-size: clamp(1rem, 3vw, 2rem);
-      white-space: nowrap;
-    }
-
-  }
-}
-
 main{
   flex: 1;
 
