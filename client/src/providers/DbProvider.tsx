@@ -36,7 +36,7 @@ export interface DbContextInterface {
   devices: DeviceInterface[];
   fetchDevices: () => void;
 
-  findLocation: (server: string, index: number) => void;
+  findLocation: (server: string, index: number, blink?: boolean) => void;
 }
 
 export const DbContext = createContext<DbContextInterface>({
@@ -208,6 +208,7 @@ export const DbProvider: React.FC<DbProviderInterface> = ({ children }) => {
   const findLocation = async (
     organizerId: string,
     index: number,
+    blink?: boolean,
     callback?: () => void
   ) => {
     const res = await fetch(`${apiUrl}organizers/find`, {
@@ -215,7 +216,7 @@ export const DbProvider: React.FC<DbProviderInterface> = ({ children }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ organizerId, index }),
+      body: JSON.stringify({ organizerId, index, blink }),
     });
 
     const find = await res.json();

@@ -11,8 +11,17 @@ header{
     align-items: center;
 
     h1{
+      display: flex;
+      align-items: center;
       font-size: clamp(1rem, 3vw, 2rem);
       white-space: nowrap;
+      gap: $spacer-half;
+
+      img{
+        width: 50px;
+        height: 50px;
+        position: relative;
+      }
     }
   }
 

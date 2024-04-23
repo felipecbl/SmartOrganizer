@@ -13,7 +13,7 @@ export interface AddItemInterface {}
 
 export const AddItem: React.FC<AddItemInterface> = ({}) => {
   const { setCurrentPage, params } = usePages();
-  const { organizers, addItem, updateItem, deleteItem } = useDb();
+  const { organizers, addItem, updateItem, deleteItem, findLocation } = useDb();
   const [displayAddOrganizer, setDisplayAddOrganizer] =
     useState<boolean>(false);
   const [selectedPosition, setSelectedPosition] = useState<number>(
@@ -165,6 +165,7 @@ export const AddItem: React.FC<AddItemInterface> = ({}) => {
                 return { name: position + 1, value: position };
               })}
               onChange={(position) => {
+                findLocation(selectedOrganizerId, ensureNumber(position), true);
                 setSelectedPosition(ensureNumber(position));
                 setItem({ ...item, position: ensureNumber(position) });
               }}

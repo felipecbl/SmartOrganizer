@@ -69,7 +69,7 @@ export const Item: React.FC<ItemInterface> = ({
             className="item__location "
             onClick={() => findLocation(organizerId, ensureNumber(position))}
           >
-            Find {organizerName} [{ensureNumber(position) + 1}]
+            {`Find ${organizerName} (${ensureNumber(position) + 1})`}
           </button>
         </div>
       </div>

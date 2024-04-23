@@ -19,11 +19,19 @@ export const AddOrganizer: React.FC<AddOrganizerInterface> = ({}) => {
   const initialOrganizer: OrganizerInterface = {
     name: "",
     _id: "",
+    ip: "",
     items: [],
     quantity: organizerQuantity,
     server: "",
     columns: 1,
     rows: 1,
+  };
+
+  const getDeviceIp = (deviceName: string) => {
+    if (!devices) return "";
+    const device = devices?.find((device) => device.name === deviceName);
+    if (!device) return "";
+    return device.ip;
   };
 
   const [organizer, setOrganizer] =
@@ -68,7 +76,7 @@ export const AddOrganizer: React.FC<AddOrganizerInterface> = ({}) => {
             fetchDevices();
           }}
           onChange={(server) => {
-            setOrganizer({ ...organizer, server });
+            setOrganizer({ ...organizer, server, ip: getDeviceIp(server) });
           }}
           options={devices?.map((device) => {
             return { value: device.ip, label: device.name };

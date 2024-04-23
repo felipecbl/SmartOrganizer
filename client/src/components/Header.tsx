@@ -2,6 +2,8 @@ import { usePages } from "providers";
 import { useState } from "react";
 import { Menu } from "react-feather";
 
+import icon from "../assets/images/icon.png";
+
 export interface HeaderInterface {}
 
 export const Header: React.FC<HeaderInterface> = ({}) => {
@@ -16,7 +18,10 @@ export const Header: React.FC<HeaderInterface> = ({}) => {
     <header>
       <div className="container header-container">
         <div className="logo">
-          <h1>Smart Organizer</h1>
+          <h1>
+            <img src={icon} alt="Smart Organizer" />
+            Smart Organizer
+          </h1>
         </div>
 
         <nav>
