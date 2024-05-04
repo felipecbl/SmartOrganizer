@@ -15,12 +15,14 @@
     "easybase-react": "^2.2.13",
     "events": "^3.3.0",
     "iobroker.wled": "^0.7.2",
+    "react-color": "^2.19.3",
     "react-feather": "^2.0.10",
     "vite-tsconfig-paths": "^4.2.1"
   },
   "devDependencies": {
     "@types/node": "^20.9.0",
     "@types/react": "^18.2.15",
+    "@types/react-color": "^3.0.12",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",

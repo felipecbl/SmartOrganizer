@@ -16,6 +16,14 @@
   margin-bottom: $spacer-quarter;
 }
 
+.organizer__buttons{
+  display: flex;
+  justify-content: right;
+  gap: $spacer-half;
+  align-items: center;
+  margin-bottom: $spacer-half;
+}
+
 .organizer__server{
   font-size: $font-size-sm;
   color: $font-color-light;

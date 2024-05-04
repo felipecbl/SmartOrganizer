@@ -1,0 +1,49 @@
+$color-button-size: 24px;
+
+.color_field{
+
+  input{
+    padding-left: $color-button-size + $gap;
+  }
+}
+
+.input_wrap__color_field{
+  display: flex;
+  align-items: center;
+  gap: $gap-half;
+  position: relative;
+
+  input{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+  }
+}
+.hue-picker {
+  height: 5px !important;
+
+  .hue-horizontal{
+    border-radius: $input-border-radius !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    z-index: 1 !important;
+    height: 5px !important;
+
+    &>div{
+      top:-6px !important;
+      cursor: pointer !important;
+    }
+  }
+}
+
+.color_picker__preview{
+  border-radius: $button-border-radius;
+  transition: all 0.2s ease-in-out;
+  height: $color-button-size;
+  width: $color-button-size;
+  padding: 0;
+  position: absolute;
+  top: $gap-half;
+  left: $gap-half;
+  border: 1px solid $border-color;
+}

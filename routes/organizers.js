@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {getOrganizers, addOrganizer, deleteOrganizer, addItem, updateItem, deleteItem, findLocation} = require ("../controllers/organizers");
+const {getOrganizers, addOrganizer, deleteOrganizer, addItem, updateItem, deleteItem, findLocation, importAllItems} = require ("../controllers/organizers");
 // GET all organizers
 router.route("/").get(getOrganizers);
 
@@ -23,5 +23,7 @@ router.route("/delete").delete(deleteOrganizer);
 router.route("/deleteItem").delete(deleteItem);
 
 router.route("/find").post(findLocation);
+
+router.route("/import").post(importAllItems);
 
 module.exports = router;

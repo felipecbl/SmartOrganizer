@@ -15,3 +15,6 @@ export * from "./OrganizerPreview";
 export * from "./OrganizerPreview";
 export * from "./ItemQuantity";
 export * from "./TextSelect";
+export * from "./Settings";
+export * from "./ColorPicker";
+export * from "./ColorField";

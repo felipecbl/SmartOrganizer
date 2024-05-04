@@ -7,7 +7,7 @@ export interface TextSelectInterface {
   onLabelClick?: () => void;
   placeholder?: string;
   type?: string;
-  label?: string;
+  label?: string | React.ReactNode;
   helperText?: string;
   size?: "sm" | "md" | "lg" | "xl";
   options?: { value: string; label: string }[];
@@ -33,6 +33,7 @@ export const TextSelect: React.FC<TextSelectInterface> = ({
     <fieldset className="fieldset text-field text-select">
       {label && (
         <label
+          style={{ cursor: onLabelClick ? "pointer" : "default" }}
           onClick={(e) => {
             if (onLabelClick) {
               e.preventDefault();

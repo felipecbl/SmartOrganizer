@@ -1,5 +1,5 @@
 import { TItem } from "models";
-import { usePages } from "providers";
+import { useDb, usePages } from "providers";
 import { useMemo } from "react";
 import { findLocation } from "utils";
 
@@ -26,19 +26,21 @@ export const OrganizerPreview: React.FC<OrganizerPreviewInterface> = ({
     }
     return initial;
   }, [items, columns]);
+  const { settings } = useDb();
 
   const generateRows = (item: TItem, index: number, rIndex: number) => {
     let quantityClass = "";
+    const { low, high } = settings.thresholds;
     if (item.empty) {
       quantityClass = "empty";
     } else {
-      if (item.quantity === 0) {
+      if (item.quantity === low) {
         quantityClass = "red";
       }
-      if (item.quantity > 0) {
+      if (item.quantity > low) {
         quantityClass = "yellow";
       }
-      if (item.quantity >= 10) {
+      if (item.quantity >= high) {
         quantityClass = "green";
       }
     }

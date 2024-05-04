@@ -26,12 +26,8 @@
     font-weight: 300;
   }
 
-  input{
-    margin: 0 0 $spacer-half;
-  }
-
   .helper-text{
-    margin: 0 0 $spacer-half;
+    margin: $spacer-half 0;
     font-size: $font-size-sm;
     color: $font-color-light;
   }
@@ -41,13 +37,15 @@ input, select{
   -webkit-appearance: none;
   box-sizing: border-box;
   font-size: $input-font-size;
-  padding: $spacer-half;
+  padding: 0 $spacer-half;
   border: $input-border;
   border-radius: $input-border-radius;
   font-size: $font-size-md;
   width: 100%;
-  margin: 0 auto $spacer;
+  margin: 0 auto;
   transition: border-color 0.2s ease-in-out;
+  height: $input-height;
+  overflow: visible;
 
   &.size-xl{
       padding: $spacer;
@@ -68,6 +66,7 @@ input, select{
 }
 
 select{
+  height: auto;
   &::before{
     //arrow
     content: '';
@@ -112,11 +111,30 @@ select{
     position: relative;
     display: flex;
     flex-direction: column;
-    z-index: 999;
+    z-index: 98;
+    height: fit-content;
   }
 }
 .text-select__dropdown{
   position: absolute;
   top: 0;
-  // z-index: 9999;
+  z-index: 99;
+  background-color: #fff;
+}
+
+.add_item__image_wrap{
+  display: flex;
+  flex-wrap: wrap;
+  margin: $gap-half 0;
+  justify-content: center;
+  align-items: end;
+  gap: $gap-quarter;
+
+  .add_item__image{
+    width: $input-height;
+    height: $input-height;
+    box-sizing: border-box;
+    padding: $spacer-quarter;
+  }
+
 }

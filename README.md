@@ -12,8 +12,10 @@ The application will access the host network and communicate with the WLED devic
 - Drawer will light up to show the position of the item as well as indicating the quantity using configurable\* color codes.
 - Thresholds can be set to indicate when the quantity of an item is low.\*
 - Add multiple organizers
+- Import/Export data
+- Duplicate items
+- Search items by name or tag
 
 ## TODO
 
-- Export and import data
 - Create settings page

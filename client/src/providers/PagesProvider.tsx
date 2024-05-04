@@ -5,6 +5,7 @@ export interface PagesProviderInterface {
 }
 
 export type TPage =
+  | "settings"
   | "allItems"
   | "addItem"
   | "editItem"

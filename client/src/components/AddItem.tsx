@@ -6,8 +6,11 @@ import { AddOrganizer } from "./AddOrganizer";
 import { SelectField } from "./SelectField";
 import { useDb, usePages } from "providers";
 import { ensureNumber } from "utils";
+import amazon from "assets/images/amazon.svg";
+import aliexpress from "assets/images/aliexpress.ico";
 
 import { Trash } from "react-feather";
+import { Copy } from "react-feather";
 
 export interface AddItemInterface {}
 
@@ -17,7 +20,7 @@ export const AddItem: React.FC<AddItemInterface> = ({}) => {
   const [displayAddOrganizer, setDisplayAddOrganizer] =
     useState<boolean>(false);
   const [selectedPosition, setSelectedPosition] = useState<number>(
-    params?.data?.position ?? 0
+    ensureNumber(params?.data?.position ?? -1)
   );
   const [availablePositions, setAvailablePositions] = useState<number[]>([]);
   const [selectedOrganizerId, setSelectedOrganizerId] = useState<string>(
@@ -26,8 +29,18 @@ export const AddItem: React.FC<AddItemInterface> = ({}) => {
   const editing = useMemo(() => params?.data?.type === "editItem", [params]);
 
   const handleInsert = () => {
-    addItem(selectedOrganizerId, item, selectedPosition, () =>
-      setCurrentPage("allItems")
+    addItem(
+      selectedOrganizerId,
+      { ...item, position: selectedPosition },
+      selectedPosition,
+      (res: ApiResponse) => {
+        if (!(res as ApiResponse).success) {
+          alert(res.data);
+          return;
+        }
+
+        setCurrentPage("allItems");
+      }
     );
   };
 
@@ -45,11 +58,28 @@ export const AddItem: React.FC<AddItemInterface> = ({}) => {
     if (confirm(`Are you sure you want to delete ${item.name}?`) == true) {
       deleteItem(
         selectedOrganizerId,
-        selectedPosition,
+        item.position,
 
         () => setCurrentPage("allItems")
       );
     }
+  };
+
+  const handleDuplicateItem = () => {
+    alert(`Duplicating item into position ${selectedPosition + 1}`);
+    addItem(
+      selectedOrganizerId,
+      { ...item, position: selectedPosition, name: item.name + " copy" },
+      selectedPosition,
+      (res: ApiResponse) => {
+        if (!(res as ApiResponse).success) {
+          alert(res.data);
+          return;
+        }
+
+        setCurrentPage("allItems");
+      }
+    );
   };
 
   const [item, setItem] = useState<ItemInterface>({
@@ -78,7 +108,17 @@ export const AddItem: React.FC<AddItemInterface> = ({}) => {
     if (!positions) return;
 
     setAvailablePositions(positions.filter((position) => position !== -1));
-  }, [organizers, selectedOrganizerId]);
+  }, [organizers, selectedOrganizerId, selectedPosition]);
+
+  useEffect(() => {
+    if (availablePositions.length === 0) {
+      setSelectedPosition(-1);
+    } else {
+      if (selectedPosition === -1 || selectedPosition === undefined) {
+        setSelectedPosition(ensureNumber(availablePositions[0]));
+      }
+    }
+  }, [availablePositions, selectedPosition]);
 
   useEffect(() => {
     if (!params) return;
@@ -100,13 +140,22 @@ export const AddItem: React.FC<AddItemInterface> = ({}) => {
         <Panel title={editing ? "Edit item" : "Add item"}>
           <div className="form">
             {editing && (
-              <button
-                onClick={handleDelete}
-                title="Delete item"
-                className="button-icon danger top-right"
-              >
-                <Trash size={16} />
-              </button>
+              <div className="buttons top-right">
+                <button
+                  onClick={handleDuplicateItem}
+                  title="Duplicate item"
+                  className="button-icon"
+                >
+                  <Copy size={16} />
+                </button>
+                <button
+                  onClick={handleDelete}
+                  title="Delete item"
+                  className="button-icon danger "
+                >
+                  <Trash size={16} />
+                </button>
+              </div>
             )}
             {!editing && (
               <SelectField
@@ -182,25 +231,40 @@ export const AddItem: React.FC<AddItemInterface> = ({}) => {
               helperText="Separate tags with a comma, optional"
             />
 
-            <TextField
-              label="Image"
-              placeholder="Image"
-              type="text"
-              value={item.image}
-              onChange={(image) => {
-                setItem({ ...item, image });
-              }}
-            />
+            <div className="add_item__image_wrap">
+              <TextField
+                label="Image"
+                placeholder="Image"
+                type="text"
+                value={item.image}
+                onChange={(image) => {
+                  setItem({ ...item, image });
+                }}
+              />
+              {item.image && (
+                <img className="add_item__image" src={item.image} />
+              )}
+            </div>
 
-            <TextField
-              label="Link"
-              placeholder="Link"
-              type="text"
-              value={item.link}
-              onChange={(link) => {
-                setItem({ ...item, link });
-              }}
-            />
+            <div className="add_item__image_wrap">
+              <TextField
+                label="Link"
+                placeholder="Link"
+                type="text"
+                value={item.link}
+                onChange={(link) => {
+                  setItem({ ...item, link });
+                }}
+              />
+              {item.link &&
+                (item.link.includes("amazon") ? (
+                  <img className="add_item__image" src={amazon} />
+                ) : item.link.includes("aliexpress") ? (
+                  <img className="add_item__image" src={aliexpress} />
+                ) : (
+                  <></>
+                ))}
+            </div>
           </div>
           <div className="buttons">
             <button
@@ -210,9 +274,9 @@ export const AddItem: React.FC<AddItemInterface> = ({}) => {
               Cancel
             </button>
             {editing ? (
-              <button onClick={handleUpdate}>Update</button>
+              <button onClick={handleUpdate}>Update Item</button>
             ) : (
-              <button onClick={handleInsert}>Add</button>
+              <button onClick={handleInsert}>Add Item</button>
             )}
           </div>
         </Panel>

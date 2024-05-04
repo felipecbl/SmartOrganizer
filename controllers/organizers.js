@@ -62,6 +62,33 @@ exports.deleteOrganizer = async (req, res, next) => {
   }
 }
 
+exports.importAllItems = async (req, res, next) => {
+  try {
+    const {organizerId, items} = req.body;
+    const organizer = await organizersDb.get(organizerId);
+
+    if(!organizer) {
+      return next(new ErrorResponse(`Organizer not found with id of ${organizerId}`, 404));
+    }
+
+    items.forEach((item) => {
+      item._id = uniqid();
+      item.dateInserted = new Date().toISOString();
+      item.dateModified = new Date().toISOString();
+    });
+
+    organizer.items = items;
+    const response = await organizersDb.put(organizer);
+    res.status(200).json({
+      success: true,
+      data: response,
+    });
+  }
+  catch (error) {
+    next(error);
+  }
+}
+
 exports.addItem = async (req, res, next) => {
   try {
     const {organizerId , item, itemPosition} = req.body;
@@ -75,14 +102,23 @@ exports.addItem = async (req, res, next) => {
     item.dateInserted = new Date().toISOString();
     item.dateModified = new Date().toISOString();
 
-    organizer.items[itemPosition] = item;
-    const response = await organizersDb.put(organizer);
+// check if position is empty
+    if(organizer.items[itemPosition].empty){
+      organizer.items[itemPosition] = item;
+      const response = await organizersDb.put(organizer);
+      res.status(200).json({
+        success: true,
+        data: response,
+      });
+    }else{
+      res.status(200).json({
+        success: false,
+        data: `Position ${itemPosition + 1} on ${organizer.name} is already taken`,
+      });
+    }
+
     // fs.writeFileSync('./db/log.txt', `${item.name} added to ${organizer.server}`, {flag: 'a'});
 
-    res.status(200).json({
-      success: true,
-      data: response,
-    });
   }
   catch (error) {
     next(error);
@@ -126,7 +162,8 @@ exports.deleteItem = async (req, res, next) => {
       return next(new ErrorResponse(`Organizer not found with id of ${organizerId}`, 404));
     }
 
-    organizer.items.splice(itemPosition, 1);
+    // do not delete item, just set it to empty
+    organizer.items[itemPosition] = {"empty": true};
 
     const response = await organizersDb.put(organizer);
     res.status(200).json({

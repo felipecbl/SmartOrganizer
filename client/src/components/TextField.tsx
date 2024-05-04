@@ -7,14 +7,23 @@ export interface TextFieldInterface {
   type?: string;
   label?: string;
   helperText?: string;
+  style?: React.CSSProperties;
   size?: "sm" | "md" | "lg" | "xl";
 }
 
-export const TextField: React.FC<TextFieldInterface> = ({ label, helperText, value, placeholder, onChange, type = "text", size = "md" }) => {
+export const TextField: React.FC<TextFieldInterface> = ({
+  label,
+  helperText,
+  value,
+  placeholder,
+  onChange,
+  type = "text",
+  style,
+  size = "md",
+}) => {
   const id = useId();
   return (
     <fieldset className="fieldset text-field">
-
       {label && <label htmlFor={id}>{label}</label>}
 
       <input
@@ -24,12 +33,11 @@ export const TextField: React.FC<TextFieldInterface> = ({ label, helperText, val
         value={value}
         placeholder={placeholder}
         min={0}
+        style={style}
         onChange={(e) => onChange(e.target.value)}
       />
 
       {helperText && <span className="helper-text">{helperText}</span>}
-
     </fieldset>
-
   );
 };

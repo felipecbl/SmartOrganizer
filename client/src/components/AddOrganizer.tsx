@@ -4,6 +4,7 @@ import { Panel } from "./Panel";
 import { TextField } from "./TextField";
 import { useDb, usePages } from "providers";
 import { TextSelect } from "components";
+import { RefreshCcw } from "react-feather";
 
 export interface AddOrganizerInterface {}
 
@@ -12,9 +13,9 @@ export const AddOrganizer: React.FC<AddOrganizerInterface> = ({}) => {
   const { addOrganizer, devices, fetchDevices } = useDb();
   const [organizerQuantity, setOrganizerQuantity] = useState<number>(1);
 
-  useEffect(() => {
-    console.log(devices);
-  }, [devices]);
+  // useEffect(() => {
+  //   console.log(devices);
+  // }, [devices]);
 
   const initialOrganizer: OrganizerInterface = {
     name: "",
@@ -68,7 +69,11 @@ export const AddOrganizer: React.FC<AddOrganizerInterface> = ({}) => {
         />
 
         <TextSelect
-          label="Server 🔄"
+          label={
+            <>
+              Server <RefreshCcw size={12} />
+            </>
+          }
           placeholder="Server"
           type="text"
           value={organizer.server}
@@ -116,7 +121,7 @@ export const AddOrganizer: React.FC<AddOrganizerInterface> = ({}) => {
         >
           Cancel
         </button>
-        <button onClick={insertOrganizer}>Add organizer</button>
+        <button onClick={insertOrganizer}>Add Organizer</button>
       </div>
     </Panel>
   );

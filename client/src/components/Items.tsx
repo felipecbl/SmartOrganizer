@@ -5,10 +5,9 @@ import { Panel } from "./Panel";
 import { Search } from "components";
 import { useDb } from "providers";
 
-export interface AllItemsInterface {
-}
+export interface AllItemsInterface {}
 
-export const AllItems: React.FC<AllItemsInterface> = ({ }) => {
+export const AllItems: React.FC<AllItemsInterface> = ({}) => {
   const [search, setSearch] = useState<string>("");
   const { organizers } = useDb();
 
@@ -17,11 +16,11 @@ export const AllItems: React.FC<AllItemsInterface> = ({ }) => {
 
     const items: ItemInterface[] = [];
 
-    organizers.forEach(i => {
+    organizers.forEach((i) => {
       const organizer = i as unknown as OrganizerInterface;
       if (!i || !organizer.items) return;
 
-      organizer.items.forEach(item => {
+      organizer.items.forEach((item) => {
         if (item && !item.empty) {
           item.organizerName = organizer.name;
           item.organizerId = organizer._id;
@@ -33,8 +32,14 @@ export const AllItems: React.FC<AllItemsInterface> = ({ }) => {
     let filteredItems: ItemInterface[] = items;
 
     if (search) {
-      filteredItems = items.filter(item => {
-        return item.name.toLowerCase().includes(search.toLowerCase());
+      filteredItems = items.filter((item) => {
+        return (
+          item.name.toLowerCase().includes(search.toLowerCase()) ||
+          item.description?.toLowerCase().includes(search.toLowerCase()) ||
+          item.tags?.some((tag) =>
+            tag.toLowerCase().includes(search.toLowerCase())
+          )
+        );
       });
     }
 

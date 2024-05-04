@@ -44,6 +44,7 @@ export const Header: React.FC<HeaderInterface> = ({}) => {
             <button onClick={() => setCurrentPage("addOrganizer")}>
               Add Organizer
             </button>
+            <button onClick={() => setCurrentPage("settings")}>Settings</button>
           </div>
         </nav>
       </div>

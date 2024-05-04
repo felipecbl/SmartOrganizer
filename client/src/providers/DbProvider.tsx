@@ -3,6 +3,7 @@ import {
   OrganizerInterface,
   DeviceInterface,
   ApiResponse,
+  SettingsInterface,
 } from "models";
 import { useContext, createContext, useState, useEffect } from "react";
 
@@ -12,6 +13,7 @@ export interface DbProviderInterface {
 
 export interface DbContextInterface {
   organizers: OrganizerInterface[];
+  settings: SettingsInterface;
   fetchOrganizers: () => void;
   addOrganizer: (organizer: OrganizerInterface) => void;
   deleteOrganizer: (organizerId: string) => void;
@@ -20,7 +22,7 @@ export interface DbContextInterface {
     organizerId: string,
     item: ItemInterface,
     itemPosition: number,
-    callback?: () => void
+    callback?: (res: ApiResponse) => void
   ) => void;
   updateItem: (
     organizerId: string,
@@ -35,12 +37,24 @@ export interface DbContextInterface {
 
   devices: DeviceInterface[];
   fetchDevices: () => void;
+  fetchSettings: () => void;
+  saveSettings: (
+    settings: SettingsInterface,
+    callback?: (res: ApiResponse) => void
+  ) => void;
 
   findLocation: (server: string, index: number, blink?: boolean) => void;
+
+  importAllItems: (
+    organizerId: string,
+    items: ItemInterface[],
+    callback?: () => void
+  ) => void;
 }
 
 export const DbContext = createContext<DbContextInterface>({
   organizers: [],
+  settings: {} as SettingsInterface,
   fetchOrganizers: () => {},
   addOrganizer: () => {},
   deleteOrganizer: () => {},
@@ -53,6 +67,10 @@ export const DbContext = createContext<DbContextInterface>({
   fetchDevices: () => {},
 
   findLocation: () => {},
+  importAllItems: () => {},
+
+  fetchSettings: () => {},
+  saveSettings: () => {},
 });
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -61,6 +79,9 @@ export const useDb = () => useContext(DbContext);
 export const DbProvider: React.FC<DbProviderInterface> = ({ children }) => {
   const [organizers, setOrganizers] = useState<OrganizerInterface[]>([]);
   const [devices, setDevices] = useState<DeviceInterface[]>([]);
+  const [settings, setSettings] = useState<SettingsInterface>(
+    {} as SettingsInterface
+  );
 
   const apiUrl =
     import.meta.env.MODE === "development"
@@ -79,8 +100,6 @@ export const DbProvider: React.FC<DbProviderInterface> = ({ children }) => {
   };
 
   const fetchDevices = async () => {
-    console.log("fetching devices");
-
     const res = await fetch(`${apiUrl}settings/devices`, {
       method: "GET",
       headers: {
@@ -94,6 +113,7 @@ export const DbProvider: React.FC<DbProviderInterface> = ({ children }) => {
   useEffect(() => {
     fetchOrganizers();
     fetchDevices();
+    fetchSettings();
   }, []);
 
   const addOrganizer = async (organizer: OrganizerInterface) => {
@@ -133,7 +153,7 @@ export const DbProvider: React.FC<DbProviderInterface> = ({ children }) => {
     organizerId: string,
     item: ItemInterface,
     itemPosition: number,
-    callback?: () => void
+    callback?: (res: ApiResponse) => void
   ) => {
     const res = await fetch(`${apiUrl}organizers/addItem`, {
       method: "POST",
@@ -150,7 +170,7 @@ export const DbProvider: React.FC<DbProviderInterface> = ({ children }) => {
 
     fetchOrganizers();
     if (callback) {
-      callback();
+      callback(organizers);
     }
   };
 
@@ -229,10 +249,68 @@ export const DbProvider: React.FC<DbProviderInterface> = ({ children }) => {
     }
   };
 
+  const importAllItems = async (
+    organizerId: string,
+    items: ItemInterface[],
+    callback?: () => void
+  ) => {
+    const res = await fetch(`${apiUrl}organizers/import`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ organizerId, items }),
+    });
+
+    const find = await res.json();
+    if (find.error) {
+      return;
+    }
+
+    if (callback) {
+      callback();
+    }
+  };
+
+  const fetchSettings = async () => {
+    const res = await fetch(`${apiUrl}settings`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const settings = await res.json();
+    setSettings(settings.data[0]);
+  };
+
+  const saveSettings = async (
+    newSettings: SettingsInterface,
+    callback?: (res: ApiResponse) => void
+  ) => {
+    const res = await fetch(`${apiUrl}settings`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ settings: newSettings }),
+    });
+
+    const settings = await res.json();
+    if (settings.error) {
+      return;
+    }
+
+    // fetchSettings();
+    if (callback) {
+      callback(settings);
+    }
+  };
+
   return (
     <DbContext.Provider
       value={{
         organizers,
+        settings,
         addOrganizer,
         fetchOrganizers,
         deleteOrganizer,
@@ -242,6 +320,9 @@ export const DbProvider: React.FC<DbProviderInterface> = ({ children }) => {
         devices,
         fetchDevices,
         findLocation,
+        importAllItems,
+        fetchSettings,
+        saveSettings,
       }}
     >
       {children}

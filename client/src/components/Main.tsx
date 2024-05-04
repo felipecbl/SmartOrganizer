@@ -1,4 +1,10 @@
-import { AddItem, AddOrganizer, AllItems, Organizers } from "components";
+import {
+  AddItem,
+  AddOrganizer,
+  AllItems,
+  Organizers,
+  Settings,
+} from "components";
 import { usePages } from "providers";
 
 export interface MainInterface {}
@@ -16,6 +22,7 @@ export const Main: React.FC<MainInterface> = ({}) => {
             allOrganizers: <Organizers />,
             addOrganizer: <AddOrganizer />,
             editOrganizer: <div>editOrganizer</div>,
+            settings: <Settings />,
           }[currentPage]
         }
       </div>
